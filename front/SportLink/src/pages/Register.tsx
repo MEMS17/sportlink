@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { register } from "../services/api";
 
 const Register: React.FC = () => {

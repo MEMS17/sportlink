@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { getRecommendations, createReservation } from "../services/api";
 
 const AI: React.FC = () => {

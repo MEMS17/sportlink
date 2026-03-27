@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getEquipment, getMyReservations, createReservation, returnReservation, getRecommendations } from "../services/api";
 
 const Member: React.FC = () => {
