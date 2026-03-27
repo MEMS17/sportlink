@@ -88,7 +88,7 @@ export class ReservationsService {
     async findAll(): Promise<ReservationDocument[]> {
         return this.reservationModel
             .find()
-            .populate('userId')
+            .populate('userId', '-password')
             .populate('equipmentId')
             .sort({ createdAt: -1 })
             .exec();
