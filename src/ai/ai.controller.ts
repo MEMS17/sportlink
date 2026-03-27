@@ -3,15 +3,17 @@ import { AiService } from './ai.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { RolesGuard } from '../auth/roles.guard';
 import { Roles } from '../auth/roles.decorator';
+import { IsString } from 'class-validator';
 
 class RecommendationDto {
+  @IsString()
   activity: string;
 }
 
-@Controller('recommendations')
+@Controller('recommandations')
 @UseGuards(JwtAuthGuard, RolesGuard)
 export class AiController {
-  constructor(private readonly aiService: AiService) {}
+  constructor(private readonly aiService: AiService) { }
 
   @Roles('MEMBER')
   @Post()
