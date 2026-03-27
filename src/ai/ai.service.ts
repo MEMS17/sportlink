@@ -14,7 +14,7 @@ export class AiService {
   }
 
   async recommendEquipment(activity: string): Promise<string> {
-    const equipmentList = await this.equipmentService.findAllAvailable();
+    const equipmentList = await this.equipmentService.findAll(undefined, true);
 
     const catalogText = equipmentList
       .map(
