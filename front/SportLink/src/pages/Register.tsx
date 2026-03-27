@@ -1,16 +1,19 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { login } from "../services/api";
-import { jwtDecode } from "jwt-decode";
+import { register } from "../services/api";
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!name) {
+      setError("Merci de saisir votre nom !");
+      return;
+    }
 
     if (!emailRegex.test(email)) {
       setError("Merci de saisir un email valide !");
@@ -23,23 +26,23 @@ const Login: React.FC = () => {
     }
 
     try {
-      const response = await login(email, password);
-      const token = response.data.token;
-      localStorage.setItem('token', token);
-      const decoded: any = jwtDecode(token);
-      if (decoded.role === 'ADMIN') {
-        navigate('/admin');
-      } else {
-        navigate('/member');
-      }
+      await register(name, email, password);
+      alert("Inscription réussie !");
+      // Rediriger vers login ou home
     } catch (err: any) {
-      setError(err.response?.data?.message || "Erreur de connexion");
+      setError(err.response?.data?.message || "Erreur lors de l'inscription");
     }
   };
 
   return (
-    <div className="login-container">
-      <h2>Connexion</h2>
+    <div className="register-container">
+      <h2>Inscription</h2>
+      <input
+        type="text"
+        placeholder="Nom"
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
       <input
         type="email"
         placeholder="Email"
@@ -52,10 +55,10 @@ const Login: React.FC = () => {
         value={password}
         onChange={e => setPassword(e.target.value)}
       />
-      <button onClick={handleLogin}>Se connecter</button>
+      <button onClick={handleRegister}>S'inscrire</button>
       {error && <p className="error-message">{error}</p>}
     </div>
   );
 };
 
-export default Login;
+export default Register;
