@@ -1,18 +1,8 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 
-export type UserDocument = HydratedDocument<User>;
-
-@Schema({ timestamps: true })
-export class User {
-  @Prop({ required: true, unique: true })
-  email: string;
-
-  @Prop({ required: true })
-  password: string;
-
-  @Prop({ default: 'MEMBER', enum: ['ADMIN', 'MEMBER'] })
-  role: string;
-}
-
-export const UserSchema = SchemaFactory.createForClass(User);
+export const CurrentUser = createParamDecorator(
+  (_data: unknown, ctx: ExecutionContext) => {
+    const request = ctx.switchToHttp().getRequest();
+    return request.user;
+  },
+);

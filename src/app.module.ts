@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { AiModule } from './ai/ai.module';
 import { EquipmentModule } from './equipment/equipment.module';
+import { ReservationsModule } from './reservations/reservations.module';
 
 // ===================================================
 // STARTER KIT — Projet IPSSI MERN & TypeScript
@@ -32,6 +33,7 @@ import { EquipmentModule } from './equipment/equipment.module';
     AuthModule,
     AiModule,
     EquipmentModule,
+    ReservationsModule,
 
     // 4. Vos modules métier — ajoutez-les ici :
     // EquipmentModule,    // SportLink
