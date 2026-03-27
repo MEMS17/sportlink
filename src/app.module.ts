@@ -5,7 +5,6 @@ import { AuthModule } from './auth/auth.module';
 import { AiModule } from './ai/ai.module';
 import { EquipmentModule } from './equipment/equipment.module';
 import { ReservationsModule } from './reservations/reservations.module';
-import { UsersModule } from './users/users.module';
 
 // ===================================================
 // STARTER KIT — Projet IPSSI MERN & TypeScript
@@ -35,7 +34,6 @@ import { UsersModule } from './users/users.module';
     AiModule,
     EquipmentModule,
     ReservationsModule,
-    UsersModule,
 
     // 4. Vos modules métier — ajoutez-les ici :
     // EquipmentModule,    // SportLink
